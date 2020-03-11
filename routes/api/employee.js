@@ -11,9 +11,9 @@ function initEmployee(db) {
       X GET       /byid/:id
       X GET       /bycompany/:company
       X GET       /bytag/:tag
-      POST      /addtag/:id              tag
-      DELETE    /delete/:id
-      POST      /makeolder               age
+      X POST      /addtag/:id              tag
+      X DELETE    /delete/:id
+      X POST      /makeolder               age
    */
 
 //http://localhost:3000/api/employees/all
@@ -63,7 +63,42 @@ router.get('/bytag/:tag', (req, res)=>{
 });
 });
 
+//http://localhost:3000/api/employees/addtag/:id
+router.post('/addtag/:id', (req, res)=>{
+  var id = req.params.id.toString();
+  var tag = req.body.tag.toString();
+  empModel.addEmployeeATag(tag, id, (err, doc)=>{
+    if(err){
+      console.log(err);
+      return res.status(500).json({"Error":"Oops, algo salio mal!"});
+    }
+    return res.status(200).json(doc);
+    });
+});
 
+//http://localhost:3000/api/employees/delete/:id
+router.delete('/delete/:id', (req, res)=>{
+  var id = req.params.id.toString();
+  empModel.removeEmployee(id, (err, doc)=>{
+    if(err){
+      console.log(err);
+      return res.status(500).json({"Error":"Oops, algo salio mal!"});
+    }
+    return res.status(200).json(doc);
+    });
+});
+
+//http://localhost:3000/api/employees/makeolder
+router.post('/makeolder', (req, res)=>{
+  var inc = parseInt(req.body.incr);
+  empModel.increaseAgeToAll(inc, (err, doc)=>{
+    if(err){
+      console.log(err);
+      return res.status(500).json({"Error":"Oops, algo salio mal!"});
+    }
+    return res.status(200).json(doc);
+    });
+});
 
 
   return router;

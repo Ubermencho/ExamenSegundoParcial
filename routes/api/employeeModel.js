@@ -64,21 +64,52 @@ function employeeModel(db){
     //Implementar
     //Se requiere agregar a un documento un nuevo tag
     // $push
-    return handler(new Error("No Implementado"), null);
+    var query = {"_id": new ObjectID(id)};
+    empColl.update(
+      query,
+      {$push:{"tags": tag}},
+      (err, rslt)=>{
+        if(err){
+          return handler(err, null);
+        }
+        return handler(null, rslt.result);
+      }
+    );
   }
 
   lib.removeEmployee = (id, handler) => {
     //Implementar
     //Se requiere eliminar un documento de la colección
-    return handler(new Error("No Implementado"), null);
+    var query = {"_id": new ObjectID(id)};
+    empColl.deleteOne(
+      query,
+      (err, rslt)=>{
+        if(err){
+          return handler(err, null);
+        }
+        return handler(null, rslt.result);
+      }
+    );
   }
 
   lib.increaseAgeToAll = (ageDelta, handler) => {
     //Implementar
     //Se requiere modificar todos los documentos de la colección
     // incrementando age por la cantidad de ageDelta $inc
-    return handler(new Error("No Implementado"), null);
+    var query = {$inc: {"age": ageDelta}};
+    empColl.update(
+      {},
+      query,
+      {"multi": true},
+      (err, rslt)=>{
+        if(err){
+          return handler(err, null);
+        }
+        return handler(null, rslt.result);
+      }
+    );
   }
+  
   return lib;
 }
 
