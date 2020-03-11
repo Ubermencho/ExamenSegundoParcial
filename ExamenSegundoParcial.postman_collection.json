@@ -1,0 +1,244 @@
+{
+	"info": {
+		"_postman_id": "2c8f6505-7c03-4ad8-adaf-f9815eba6743",
+		"name": "ExamenSegundoParcial",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "http://localhost:3000/api/employees/all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/employees/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"employees",
+								"all"
+							]
+						},
+						"description": "Obtener TODOS los empleados"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/employees/byid/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/employees/byid/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"employees",
+								"byid",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5c871f24fcc06c827a581919"
+								}
+							]
+						},
+						"description": "Obtener Empleado por id"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/employees/bycompany/:company",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/employees/bycompany/:company",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"employees",
+								"bycompany",
+								":company"
+							],
+							"variable": [
+								{
+									"key": "company",
+									"value": "HYDROCOM"
+								}
+							]
+						},
+						"description": "Obtener empleado por compañia"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/employees/bytag/:tag",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/employees/bytag/:tag",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"employees",
+								"bytag",
+								":tag"
+							],
+							"variable": [
+								{
+									"key": "tag",
+									"value": "dolore"
+								}
+							]
+						},
+						"description": "Obtener empleados por Tag"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "http://localhost:3000/api/employees/addtag/:id",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "tag",
+									"value": "tagNUEVA",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/employees/addtag/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"employees",
+								"addtag",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5e68260c011d4989d9fa4319"
+								}
+							]
+						},
+						"description": "Añadirle una Tag a un empleado"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/employees/makeolder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "incr",
+									"value": "10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/employees/makeolder",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"employees",
+								"makeolder"
+							]
+						},
+						"description": "Aumentar la edad de todos los empleados"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "DEL",
+			"item": [
+				{
+					"name": "http://localhost:3000/api/employees/delete/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/employees/delete/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"employees",
+								"delete",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5e68260c011d4989d9fa4319"
+								}
+							]
+						},
+						"description": "Eliminar un empleado"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

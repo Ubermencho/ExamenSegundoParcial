@@ -32,17 +32,11 @@ function employeeModel(db){
     // implementar
     // solo mostrar name, email, company
     var query = {"company":company};
-    var pro = {"name":1, "email":1, "company":1}
-    empColl.findOne(
+    var pro = {"name":1, "email":1, "company":1, "_id":0}
+    empColl.find(
       query,
       {"projection": pro},
-      (err,doc)=>{
-        if(err){
-          return handler(err,null);
-        }
-        return handler(null, doc);
-      }
-    );
+    ).toArray(handler);
   }
 
   lib.getEmployeesByTag = (tag, handler) => {
@@ -52,7 +46,7 @@ function employeeModel(db){
     // tags
     // mostrar solo name, email, tags
     var query = {"tags":tag};
-    var pro = {"name":1, "email":1, "tags":1}
+    var pro = {"name":1, "email":1, "tags":1,"_id":0}
     empColl.find(
       query,
       {"projection": pro}
@@ -109,7 +103,7 @@ function employeeModel(db){
       }
     );
   }
-  
+
   return lib;
 }
 
