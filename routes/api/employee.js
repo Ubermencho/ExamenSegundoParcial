@@ -7,22 +7,63 @@ function initEmployee(db) {
   //rutas a implementar
   // metodo     ruta                     body
   /*
-      GET       /all
-      GET       /byid/:id
-      GET       /bycompany/:company
-      GET       /bytag/:tag
+      X GET       /all
+      X GET       /byid/:id
+      X GET       /bycompany/:company
+      X GET       /bytag/:tag
       POST      /addtag/:id              tag
       DELETE    /delete/:id
       POST      /makeolder               age
    */
 
-  router.get('/all', (req, res, next) => {
-    /*
-    empModel.xyz( (err, docs)=>{
-      return res.status(200).json(docs);
+//http://localhost:3000/api/employees/all
+  router.get('/all', (req, res) => {
+    empModel.getEmployees( (err, docs)=>{
+      if(err){
+        console.log(err);
+        return res.status(500).json({"Error":"Oops, algo salio mal!"})
+      }
+        return res.status(200).json(docs);
     });
-    */
-  });// all
+    });// all
+
+//http://localhost:3000/api/employees/byid/:id
+  router.get('/byid/:id', (req, res)=>{
+    var id =  req.params.id ;
+    empModel.getEmployeesById(id, (err, doc)=>{
+     if(err){
+        console.log(err);
+        return res.status(500).json({"Error":"Oops, algo salio mal!"});
+      }
+        return res.status(200).json(doc);
+    });
+    });
+
+    //http://localhost:3000/api/employees/bycompany/:company
+    router.get('/bycompany/:company', (req, res)=>{
+      var company =  req.params.company ;
+      empModel.getEmployeesByCompany(company, (err, doc)=>{
+        if(err){
+          console.log(err);
+          return res.status(500).json({"Error":"Oops, algo salio mal!"});
+        }
+        return res.status(200).json(doc);
+    });
+    });
+
+//http://localhost:3000/api/employees/bytag/:tag
+router.get('/bytag/:tag', (req, res)=>{
+  var tag =  req.params.tag ;
+  empModel.getEmployeesByTag(tag, (err, doc)=>{
+    if(err){
+      console.log(err);
+      return res.status(500).json({"Error":"Oops, algo salio mal!"});
+    }
+    return res.status(200).json(doc);
+});
+});
+
+
 
 
   return router;
